@@ -1,3 +1,349 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "bootstrap/dist/css/bootstrap";
+
+/* Base styling for the container */
+body {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Primary large blob */
+body::before {
+    content: "";
+    position: fixed;
+    top: 30%;
+    left: 35%;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle at 30% 30%,
+            rgba(147, 112, 219, 0.4),
+            rgba(102, 51, 153, 0.3),
+            rgba(138, 43, 226, 0.2));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(80px);
+    z-index: -1;
+    animation: blobFloat 20s infinite alternate ease-in-out;
+}
+
+/* Secondary medium blob */
+body::after {
+    content: "";
+    position: fixed;
+    top: 65%;
+    right: 25%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle at 70% 70%,
+            rgba(72, 209, 204, 0.3),
+            rgba(0, 206, 209, 0.2),
+            rgba(64, 224, 208, 0.1));
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+    filter: blur(60px);
+    z-index: -1;
+    animation: blobFloat 25s infinite alternate-reverse ease-in-out;
+}
+
+/* Additional floating blobs */
+.blob-1,
+.blob-2,
+.blob-3 {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: -1;
+    opacity: 1;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    top: 20%;
+    right: 15%;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(255, 182, 193, 0.3),
+            rgba(255, 105, 180, 0.2));
+    animation: blobFloat 15s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+    width: 300px;
+    height: 300px;
+    bottom: 15%;
+    left: 10%;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(135, 206, 235, 0.3),
+            rgba(0, 191, 255, 0.2));
+    animation: blobFloat 18s infinite alternate-reverse ease-in-out;
+}
+
+.blob-3 {
+    width: 250px;
+    height: 250px;
+    top: 40%;
+    left: 20%;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(216, 191, 216, 0.3),
+            rgba(221, 160, 221, 0.2));
+    animation: blobFloat 22s infinite alternate ease-in-out;
+}
+
+/* Animation for floating effect */
+@keyframes blobFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(20px, -20px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1rem;
+    color: #333;
+}
+
+.glass-card .card-header {
+    background: transparent;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+    border: none;
+}
+
+.glass-card .form-control {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: #333;
+    border-radius: 8px;
+}
+
+.glass-card .form-control:focus {
+    box-shadow: 0 0 5px rgba(31, 38, 135, 0.4);
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-card .btn-primary {
+    background: rgba(31, 38, 135, 0.6);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(31, 38, 135, 0.3);
+    transition: all 0.3s ease;
+}
+
+.glass-card .btn-primary:hover {
+    background: rgba(31, 38, 135, 0.8);
+    box-shadow: 0 6px 20px rgba(31, 38, 135, 0.4);
+}
+
+.glass-card a {
+    color: rgba(31, 38, 135, 0.7);
+    text-decoration: none;
+}
+
+.glass-card a:hover {
+    color: rgba(31, 38, 135, 1);
+}
+
+.alert {
+    background: rgba(255, 0, 0, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Sidebar Styling */
+#sidebar {
+    height: 100vh;
+    /* background: rgba(255, 255, 255, 0.26);
+    border-right: 1px solid rgba(255, 255, 255, 0.1); */
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.15);
+    /* border-radius: 12px; */
+    /* padding: 20px; */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Active Link Styling */
+#sidebar .nav-link.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* Glassmorphic Containers */
+.glass-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* border-radius: 12px; */
+    padding: 20px;
+    /* max-width: 800px; */
+    width: 100%;
+    /* margin: 20px 0; */
+    display: flexbox;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* flex-direction: column; */
+    /* color: #fff; */
+}
+
+.glass-header {
+    font-size: 1.5rem;
+    /* color: #fff; */
+    margin-bottom: 1rem;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons */
+.btn.btn-primary {
+    background: linear-gradient(135deg, #ff8a65, #ff5252);
+    color: #fff;
+    /* border: white; */
+    /* padding: 10px 20px; */
+    /* border-radius: 8px;
+    font-size: 1rem; */
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn {
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styles */
+textarea,
+input[type="text"],
+input[type="email"],
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.514);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 230, 230, 0.541);
+    box-shadow: rgba(29, 30, 31, 0.062) 0px 8px 12px;
+    margin-top: 5px;
+    /* color: #fff; */
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    background: rgba(255, 255, 255, 0.15);
+    color: #6b6b6b;
+    padding: 15px;
+    font-weight: 500;
+    font-size: smaller;
+}
+
+.table tbody td {
+    background: rgba(255, 255, 255, 0.1);
+    color: #353535;
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown Filter */
+/* #hospital_filter { */
+    /* background: rgba(255, 255, 255, 0.15); */
+    /* color: #fff; */
+    /* border: none; */
+    /* border-radius: 8px; */
+    /* width: 100%; */
+/* } */
+
+/* Logout Button */
+.logout-btn {
+    background: linear-gradient(135deg, #ff5252, #ff1744);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-3px);
+    color: #fff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
